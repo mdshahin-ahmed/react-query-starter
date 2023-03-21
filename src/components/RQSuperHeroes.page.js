@@ -1,7 +1,6 @@
-import axios from "axios";
-import { useQuery } from "react-query";
 import { Button } from "semantic-ui-react";
 import { useSuperHeroData } from "../hooks/useSuperHeroData";
+import { Link } from "react-router-dom";
 
 export const RQSuperHeroesPage = () => {
   const onSuccess = (data) => {
@@ -27,12 +26,16 @@ export const RQSuperHeroesPage = () => {
       <Button primary onClick={refetch}>
         Fetch data
       </Button>
-      {/* {data?.data.map((hero) => {
-        return <div key={hero.name}>{hero.name}</div>;
-      })} */}
-      {data.map((heroName) => {
-        return <div key={heroName}>{heroName}</div>;
+      {data?.data.map((hero) => {
+        return (
+          <div key={hero.id}>
+            <Link to={`/rq-super-heroes/${hero.id}`}>{hero.name} </Link>
+          </div>
+        );
       })}
+      {/* {data.map((heroName) => {
+        return <div key={heroName}>{heroName}</div>;
+      })} */}
     </>
   );
 };
