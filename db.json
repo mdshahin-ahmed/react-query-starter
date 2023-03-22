@@ -14,6 +14,16 @@
       "id": 3,
       "name": "Wonder Woman",
       "alterEgo": "Princess Diana"
+    },
+    {
+      "name": "Shahin",
+      "alterEgo": "Ahmed",
+      "id": 4
+    },
+    {
+      "name": "dfdf",
+      "alterEgo": "fdfdf",
+      "id": 5
     }
   ],
   "friends": [
@@ -38,14 +48,12 @@
   ],
   "channels": [
     {
-      "id": "something",
-      "courses": ["react", "JS", "Next"]
-    }
-  ],
-  "channels": [
-    {
       "id": "codevolution",
-      "courses": ["react", "vue", "angular"]
+      "courses": [
+        "react",
+        "vue",
+        "angular"
+      ]
     }
   ],
   "colors": [

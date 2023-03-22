@@ -1,8 +1,15 @@
-import { Button } from "semantic-ui-react";
-import { useSuperHeroData } from "../hooks/useSuperHeroData";
+import { Button, Input } from "semantic-ui-react";
+import {
+  useAddSuperHeroData,
+  useSuperHeroData,
+} from "../hooks/useSuperHeroData";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export const RQSuperHeroesPage = () => {
+  const [name, setName] = useState("");
+  const [alterEgo, setAlterEgo] = useState("");
+
   const onSuccess = (data) => {
     console.log("Perform side effect after data fetching", data);
   };
@@ -12,6 +19,14 @@ export const RQSuperHeroesPage = () => {
 
   const { isLoading, data, isError, error, refetch, isFetching } =
     useSuperHeroData(onSuccess, onError);
+
+  const { mutate } = useAddSuperHeroData();
+
+  const handleAddHeroClick = () => {
+    console.log({ name, alterEgo });
+    const hero = { name, alterEgo };
+    mutate(hero);
+  };
 
   if (isLoading || isFetching) {
     return <h2>Loading...</h2>;
@@ -23,6 +38,23 @@ export const RQSuperHeroesPage = () => {
   return (
     <>
       <h2>React Query Super Heroes Page</h2>
+
+      <div>
+        <Input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Input
+          type="text"
+          value={alterEgo}
+          onChange={(e) => setAlterEgo(e.target.value)}
+        />
+        <Button primary onClick={handleAddHeroClick}>
+          Add Hero
+        </Button>
+      </div>
+
       <Button primary onClick={refetch}>
         Fetch data
       </Button>
